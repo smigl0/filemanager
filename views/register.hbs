@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Manager</title>
+    <link rel="stylesheet" href="bs/bootstrap.css">
+    <link rel="stylesheet" href="bsi/bootstrap-icons.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body data-bs-theme="dark">
+
+    <div style="height: 100%;" class="d-flex flex-column gap-3 px-2">
+
+        <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+            <div style="width: 100%;" class="d-flex flex-column align-items-center">
+                <div class="fs-1">
+                    <i class="bi bi-person-plus-fill"></i>
+                    <label class="form-label" for="loginName">Register</label>
+                </div>
+                <hr>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                        <form class="d-flex flex-column align-items-center" action="/register" method="POST">
+
+
+                            <div class="d-flex flex-column gap-4 mb-4">
+                                <input type="text" id="loginName" class="form-control" placeholder="Username"
+                                    name="username" required />
+
+                                <input type="password" id="loginPassword" class="form-control" placeholder="Password"
+                                    name="password" />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+
+                            <div class="text-center">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

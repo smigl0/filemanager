@@ -1,0 +1,138 @@
+<script src="/script/view.js" type="module" defer></script>
+<div class="d-flex gap-3">
+    <div class="d-flex flex-column gap-1" style="flex-shrink: 0;">
+        <button class="btn btn-primary px-4" name="ftype" value="emptyFile" id="btn-add-file">
+            Add empty file
+        </button>
+        <button class="btn btn-primary px-4" name="ftype" value="folder" id="btn-add-folder">
+            Add folder
+        </button>
+        <button class="btn btn-primary px-4" id="btn-upload-file">
+            Upload file
+        </button>
+        <div>
+            <button class="btn btn-warning px-4" id="btn-rename">
+                Rename
+            </button>
+            <button class="btn btn-danger px-4" id="btn-delete">
+                Delete
+            </button>
+        </div>
+
+    </div>
+
+    <form action="/add" method="post">
+
+    </form>
+    <div class="d-flex flex-column gap-3">
+
+        <div style="width: 100%">
+            <div style="margin:0" class="p-1 fs-3 d-flex align-center gap-2">
+                <form formaction="/list">
+                    <input name="type" value="dir" hidden>
+                    {{#each btnpaths}}
+                    {{#unless @first}}
+                    <i class="bi bi-arrow-right fs-4" style="color: var(--bs-gray-600);"></i>
+                    {{/unless}}
+                    <button class="btn btn-primary" type="submit" name="path" value="{{paths}}">
+                        {{path}}
+                    </button>
+                    {{/each}}
+                </form>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column gap-3">
+            <div class="d-flex gap-1 flex-wrap">
+                {{#each dirsandpaths}}
+                <div class="d-flex flex-column gap-1">
+                    <form method="GET" action="list" id="listFormDirs">
+                        <input hidden name="type" value="dir">
+                        <button class="btn btn-secondary cardbtn" style="min-height: 7em;" name="path"
+                            value={{dirpath}}>
+                            <div>
+                                <i class="bi bi-folder-fill fs-1"></i>
+                                <div class="fs-4">{{dirname}}
+                                </div>
+                            </div>
+                        </button>
+                    </form>
+                    <form method="GET" action="delete">
+                        <button class="btn btn-danger fs-3 p-2" style="width:100%;" name="path" value="{{dirpath}}">
+                            <i class="bi bi-x-square"></i>
+                        </button>
+                    </form>
+                </div>
+                {{/each}}
+            </div>
+
+            <div class="d-flex gap-1 flex-wrap">
+                {{#each files}}
+                <div class="d-flex flex-column gap-1">
+                    <form method="GET" action="list">
+                        <input hidden name="type" value="file">
+                        <input hidden name="ext" value="{{ext}}">
+                        <button class="btn btn-primary cardbtn" style="min-height: 7em;" name="path" value="{{fpath}}">
+                            <i class="bi bi-filetype-{{ext}}" style="font-size: 5em;"></i>
+                            <div class="fs-4">
+                                <div>{{fname}}</div>
+                            </div>
+                        </button>
+                    </form>
+                    <form method="GET" action="delete">
+                        <button class="btn btn-danger fs-3 p-2" style="width:100%;" name="path" value="{{fpath}}">
+                            <i class="bi bi-x-square"></i>
+                        </button>
+                    </form>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <dialog id="dialog-add-file" class="bg-dark rounded border">
+        <form action="/add?path={{currentPath}}" method="post" enctype="multipart/form-data">
+            Filename: <input type="text" name="fname" id="">
+            <input type="hidden" name="path" value="{{currentPath}}">
+            <button type="submit" name="ftype" value="emptyFile" class="btn btn-primary">Submit</button>
+        </form>
+
+    </dialog>
+    <dialog id="dialog-add-folder" class="bg-dark rounded border">
+        <form action="/add?path={{currentPath}}" method="post" enctype="multipart/form-data">
+            Foldername: <input type="text" name="fname" id="">
+            <input type="hidden" name="path" value="{{currentPath}}">
+            <button type="submit" name="ftype" value="folder" class="btn btn-primary">Submit</button>
+        </form>
+    </dialog>
+
+    <dialog id="dialog-upload-file" class="bg-dark rounded border">
+        <form action="/add?path={{currentPath}}" method="post" class="d-flex align-items-center"
+            enctype="multipart/form-data">
+            <input type="file" required name="file">
+            <button type="submit" name="ftype" value="file" class="btn btn-primary">Submit</button>
+        </form>
+    </dialog>
+
+    <dialog id="dialog-rename" class="bg-dark rounded border">
+        <form action="/rename" method="get" class="d-flex align-items-center gap-1">
+            <input name="path" value="{{currentPath}}" hidden>
+            <input name="newPathPrep" value="{{newPathPrep}}" hidden>
+            <input type="text" required name="name">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </dialog>
+
+    <dialog id="dialog-delete" class="bg-dark rounded border">
+        <form action="/delete" method="get">
+            <div class="d-flex gap-1 flex-row gap-3 align-center justify-center flex-row">
+                <input name="path" value="{{currentPath}}" hidden>
+                <div class="d-flex align-items-center gap-3">
+                    <div>
+                        Are you sure?
+                    </div>
+                    <button type="submit" class="btn btn-danger">Confirm</button>
+                </div>
+            </div>
+        </form>
+    </dialog>
+</div>

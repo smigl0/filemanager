@@ -1,0 +1,21 @@
+<div class="navbar d-flex justify-content-between p-2 border-bottom">
+    <a href="/" class="btn fs-4 d-flex justify-content-center align-items-center p-2 fw-bold"
+        style="background-color: var(--bs-primary);">
+        <i class="bi bi-folder-fill"></i>
+        &nbsp;Filemanager
+    </a>
+    <div class="d-flex gap-2">
+        <a href="/logout">
+            <button class="btn btn-primary fs-4">
+                <i class="bi bi-person-dash-fill"></i>
+            </button>
+        </a>
+        <form action="/list">
+            <input name="type" value="dir" hidden>
+            <button class="btn btn-primary fs-4" action="submit" name="path" value="\">
+                <i class="bi bi-folder-fill"></i>
+            </button>
+        </form>
+    </div>
+
+</div>

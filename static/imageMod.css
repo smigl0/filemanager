@@ -1,0 +1,39 @@
+#panel {
+
+    padding: 0;
+    width: 0px;
+    transition: width 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#panel * {
+
+    transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+img {
+    transition: scale 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+img:hover {
+    scale: 1.1;
+    transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.img-show:hover {
+    scale: 1;
+    transition: 0;
+}
+
+.btn-filter {
+    width: 100%;
+    padding: 16px;
+    gap: 0.5rem !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    flex-direction: column !important;
+    display: flex !important;
+    box-sizing: border-box;
+}

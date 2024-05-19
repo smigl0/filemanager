@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="/static/imageMod.css">
+<script src="/script/imageMod.js" type="module" defer></script>
+<div class="d-flex flex-row" style="height: 100%;">
+    <div class="d-flex gap-3 flex-column mx-2 align-items-center" style=" height:100%;width:8em;flex-shrink:0;">
+        <div class="d-flex flex-column gap-2" style="width: 100%;">
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-warning" name="ftype" value="emptyFile" id="btn-filter"
+                    style="aspect-ratio: 1/1;width:100%;">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="width: 4em;aspect-ratio:1/1;" fill="currentColor"
+                        class="bi bi-front" viewBox="0 0 16 16">
+                        <path
+                            d="M0 .5A.5.5 0 0 1 .5 0h5a.5.5 0 0 1 .5.5v5.277l4.147-4.131a.5.5 0 0 1 .707 0l3.535 3.536a.5.5 0 0 1 0 .708L10.261 10H15.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5H3a3 3 0 0 1-2.121-.879A3 3 0 0 1 0 13.044m6-.21 7.328-7.3-2.829-2.828L6 7.188zM4.5 13a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0M15 15v-4H9.258l-4.015 4zM0 .5v12.495zm0 12.495V13z" />
+                    </svg>
+                    </svg>
+                </button>
+            </div>
+            <div class="d-flex justify-content-between" style=" width:100%;">
+                <button class="btn btn-warning d-flex align-items-center justify-content-center fs-2" name="ftype"
+                    value="emptyFile" id="btn-rename" style="aspect-ratio: 1/1;">
+                    <i class="bi bi-pencil-square"></i></button>
+
+                <button class="btn btn-warning d-flex align-items-center justify-content-center fs-2" id="save-btn"
+                    style="aspect-ratio: 1/1;">
+                    <i class="bi bi-floppy-fill"></i>
+            </div>
+            <a href="/showUpload?fpath={{fpath}}">
+                <button class="btn btn-primary px-4" id="btn-rename" style="width: 100%;" id="show-btn">
+                    Show
+                </button>
+            </a>
+        </div>
+
+    </div>
+    <div style="height: 100%;background-color:#121212;overflow:hidden;" class="d-flex flex-column rounded-1" id="panel">
+        {{#each effects}}
+        <div class="btn btn-filter filterbtn" id="{{name}}">
+            <img src="{{src}}" style="background-color: aqua;filter:{{name}}(100%);max-width:100%;max-height:100%;"
+                id="{{name}}-img">
+            <div>{{name}}</div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="d-flex justify-content-center align-items-center" style="height: 100%;width:100%;" id="showArea">
+        <img src="{{src}}" style="background-color: aqua;max-width:60%;" class="img-show" id="img-show">
+    </div>
+
+    <input id="fpath" value="{{fpath}}" hidden>
+
+    <dialog id="dialog-rename" class="bg-dark rounded border">
+        <form action="/rename" method="get" class="d-flex align-items-center gap-1">
+            <input name="from" value="imageMod" hidden>
+            <input name="fpath" value="{{fpath}}" hidden>
+            <input type="text" required name="name">
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <div id="dialog-cancel-btn" class="btn btn-outline-secondary">Cancel</div>
+            </div>
+        </form>
+    </dialog>
+</div>

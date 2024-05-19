@@ -1,0 +1,5 @@
+.btn:hover {
+    scale: 1.1;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1s;
+}

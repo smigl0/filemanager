@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Manager</title>
+    <link rel="stylesheet" href="bs/bootstrap.css">
+    <link rel="stylesheet" href="bsi/bootstrap-icons.css">
+    <link rel="stylesheet" href="static/style.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body data-bs-theme="dark">
+
+    <div style="height: 100%;" class="d-flex flex-column gap-3 px-2">
+        {{> header}}
+        {{{body}}}
+    </div>
+</body>
+
+</html>
